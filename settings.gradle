@@ -12,5 +12,14 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "TextFormatterExample"
 include ':app'
+gradle.ext.roboswag = [
+        'text-processing'
+]
+
+gradle.ext.roboswag.forEach { module ->
+    include ":$module"
+    project(":$module").projectDir = file("RoboSwag/$module")
+}
